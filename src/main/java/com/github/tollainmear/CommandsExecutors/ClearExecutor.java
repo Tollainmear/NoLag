@@ -1,0 +1,15 @@
+package com.github.tollainmear.CommandsExecutors;
+
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandResult;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.args.CommandContext;
+import org.spongepowered.api.command.spec.CommandExecutor;
+
+public class ClearExecutor implements CommandExecutor {
+    @Override
+    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
+        //todo-清理指定世界的指定生物类型
+        return null;
+    }
+}
