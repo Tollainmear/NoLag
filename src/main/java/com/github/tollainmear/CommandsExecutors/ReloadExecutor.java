@@ -9,7 +9,7 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 public class ReloadExecutor implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        //todo-实现重载功能
+        //todo-瀹炵幇閲嶈浇鍔熻兘
         return null;
     }
 }

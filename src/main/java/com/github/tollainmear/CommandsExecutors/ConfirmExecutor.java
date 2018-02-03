@@ -9,7 +9,7 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 public class ConfirmExecutor implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        //todo-确认添加到缓存黑名单上的对象，如果十秒内没有确认，自动清理缓存黑名单
+        //todo-纭娣诲姞鍒扮紦瀛橀粦鍚嶅崟涓婄殑瀵硅薄锛屽鏋滃崄绉掑唴娌℃湁纭锛岃嚜鍔ㄦ竻鐞嗙紦瀛橀粦鍚嶅崟
         return null;
     }
 }

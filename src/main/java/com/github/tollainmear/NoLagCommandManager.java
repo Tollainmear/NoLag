@@ -14,20 +14,20 @@ public class NoLagCommandManager {
     private final NoLag plugin;
     private Translator translator;
 
-    //ÉèÖÃÇåÀíÖÜÆÚ
+    //è®¾ç½®æ¸…ç†å‘¨æœŸ
     private CommandSpec interval;
-    //É¾³ıÖ¸¶¨ÊÀ½çµÄÖ¸¶¨ÀàĞÍµÄÉúÎï
+    //åˆ é™¤æŒ‡å®šä¸–ç•Œçš„æŒ‡å®šç±»å‹çš„ç”Ÿç‰©
     private CommandSpec clear;
-    //ÊÖ¶¯Ğ¶ÔØÇø¿é
+    //æ‰‹åŠ¨å¸è½½åŒºå—
     private CommandSpec unloadChunks;
-    //ÉèÖÃÖ¸¶¨ÊÀ½çµ¥Çø¿éÉúÎïÉÏÏŞ
+    //è®¾ç½®æŒ‡å®šä¸–ç•Œå•åŒºå—ç”Ÿç‰©ä¸Šé™
     private CommandSpec limit;
-    /*±à¼­ºÚÃûµ¥£¨µ±Ã»ÓĞ¸ø³öµÄÊ±ºò£¬½«Ö¸ÏòµÄÉúÎï/·½¿é¼ÓÈëºÚÃûµ¥£¬ĞèÒªÈ·ÈÏ£©*/
-    //ÉúÎïºÚÃûµ¥
+    /*ç¼–è¾‘é»‘åå•ï¼ˆå½“æ²¡æœ‰ç»™å‡ºçš„æ—¶å€™ï¼Œå°†æŒ‡å‘çš„ç”Ÿç‰©/æ–¹å—åŠ å…¥é»‘åå•ï¼Œéœ€è¦ç¡®è®¤ï¼‰*/
+    //ç”Ÿç‰©é»‘åå•
     private CommandSpec eblack;
-    //·½¿éºÚÃûµ¥
+    //æ–¹å—é»‘åå•
     private CommandSpec bblack;
-    //È·ÈÏÌí¼ÓÈ±Ê¡µÄÃæ¶ÔµÄ·½¿é
+    //ç¡®è®¤æ·»åŠ ç¼ºçœçš„é¢å¯¹çš„æ–¹å—
     private CommandSpec confirm;
 
     private CommandSpec reload;

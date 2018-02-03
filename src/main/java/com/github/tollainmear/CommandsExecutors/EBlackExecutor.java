@@ -9,9 +9,9 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 public class EBlackExecutor implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        //todo-ĞŞ¸Ä²¢´æ´¢ÅäÖÃÎÄ¼ş¡¢configNode
-        //»ñÈ¡ºóÃæµÄ²ÎÊı£¬µ±Ã»ÓĞ¸ø³öÉúÎïIDµ½Ê±ºò£¬Ä¬ÈÏ½øĞĞÉäÏß×·×Ù£¬Ìí¼ÓµÚÒ»¸ö×·×Ùµ½µÄÉúÎïÀàĞÍµ½»º´æºÚÃûµ¥
-        //Ìí¼ÓÇ°ĞèÒªconfirmÈ·ÈÏ
+        //todo-ä¿®æ”¹å¹¶å­˜å‚¨é…ç½®æ–‡ä»¶ã€configNode
+        //è·å–åé¢çš„å‚æ•°ï¼Œå½“æ²¡æœ‰ç»™å‡ºç”Ÿç‰©IDåˆ°æ—¶å€™ï¼Œé»˜è®¤è¿›è¡Œå°„çº¿è¿½è¸ªï¼Œæ·»åŠ ç¬¬ä¸€ä¸ªè¿½è¸ªåˆ°çš„ç”Ÿç‰©ç±»å‹åˆ°ç¼“å­˜é»‘åå•
+        //æ·»åŠ å‰éœ€è¦confirmç¡®è®¤
         return null;
     }
 }

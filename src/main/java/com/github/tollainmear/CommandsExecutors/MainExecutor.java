@@ -9,7 +9,7 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 public class MainExecutor implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        //todo-Ö÷Òª°ïÖú²Ëµ¥£¬ÏÔÊ¾ÌáÊ¾ĞÔÎÄ×Ö
+        //todo-ä¸»è¦å¸®åŠ©èœå•ï¼Œæ˜¾ç¤ºæç¤ºæ€§æ–‡å­—
         return null;
     }
 }

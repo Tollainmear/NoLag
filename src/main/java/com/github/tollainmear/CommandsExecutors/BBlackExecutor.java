@@ -9,9 +9,9 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 public class BBlackExecutor implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        //todo-修改并存储配置文件、configNode
-        //获取后面的参数，当没有给出方块ID到时候，默认进行射线追踪，添加第一个非空气方块到缓存黑名单
-        //添加前需要confirm确认
+        //todo-淇敼骞跺瓨鍌ㄩ厤缃枃浠躲�乧onfigNode
+        //鑾峰彇鍚庨潰鐨勫弬鏁帮紝褰撴病鏈夌粰鍑烘柟鍧桰D鍒版椂鍊欙紝榛樿杩涜灏勭嚎杩借釜锛屾坊鍔犵涓�涓潪绌烘皵鏂瑰潡鍒扮紦瀛橀粦鍚嶅崟
+        //娣诲姞鍓嶉渶瑕乧onfirm纭
         return null;
     }
 }

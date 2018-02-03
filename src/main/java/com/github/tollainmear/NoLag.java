@@ -44,17 +44,17 @@ public class NoLag {
     private NoLagCommandManager nlCmdManager;
     private Translator translator;
 
-    //Ç¿ÖÆÇåÀíÄ£Ê½£¬µ±¼ì²âµ½ÓëÖ¸¶¨ÉúÎï/·½¿é½»»¥Ê±£¬Èô´ËÉúÎï/·½¿éÔÚºÚÃûµ¥ÄÚ£¬Ç¿ÖÆÉ¾³ı¶ÔÓ¦µÄÉúÎï/·½¿é
+    //å¼ºåˆ¶æ¸…ç†æ¨¡å¼ï¼Œå½“æ£€æµ‹åˆ°ä¸æŒ‡å®šç”Ÿç‰©/æ–¹å—äº¤äº’æ—¶ï¼Œè‹¥æ­¤ç”Ÿç‰©/æ–¹å—åœ¨é»‘åå•å†…ï¼Œå¼ºåˆ¶åˆ é™¤å¯¹åº”çš„ç”Ÿç‰©/æ–¹å—
     private boolean isForced;
-    //ÊÇ·ñ¿ªÆô×Ô¶¯Çø¿éĞ¶ÔØ
+    //æ˜¯å¦å¼€å¯è‡ªåŠ¨åŒºå—å¸è½½
     private boolean isAutoUnload;
-    //½ûÖ¹Éú³ÉÉúÎïµÄºÚÃûµ¥£¨¼ÓÔØÊÂ¼ş¡¢Éú³ÉÊÂ¼ş¡¢½»»¥ÊÂ¼ş¼àÌıÖĞÉ¾³ıÖ¸¶¨ÉúÎï£©
+    //ç¦æ­¢ç”Ÿæˆç”Ÿç‰©çš„é»‘åå•ï¼ˆåŠ è½½äº‹ä»¶ã€ç”Ÿæˆäº‹ä»¶ã€äº¤äº’äº‹ä»¶ç›‘å¬ä¸­åˆ é™¤æŒ‡å®šç”Ÿç‰©ï¼‰
     private List<Entity> eBlackList;
-    //Ç¿ÖÆÇåÀíµÄ£¨·½¿é£©ºÚÃûµ¥£¨Í¬Ê±½ûÖ¹·ÅÖÃ£©
+    //å¼ºåˆ¶æ¸…ç†çš„ï¼ˆæ–¹å—ï¼‰é»‘åå•ï¼ˆåŒæ—¶ç¦æ­¢æ”¾ç½®ï¼‰
     private List<BlockItemData> bBlackList;
-    //×Ô¶¯ÇåÀíµÄÖÜÆÚ
+    //è‡ªåŠ¨æ¸…ç†çš„å‘¨æœŸ
     private int interval;
-    //Õë¶ÔÓÚÃ¿¸öÊÀ½çµ¥Çø¿é¹ÖÎïÉú³ÉµÄÉÏÏŞ
+    //é’ˆå¯¹äºæ¯ä¸ªä¸–ç•Œå•åŒºå—æ€ªç‰©ç”Ÿæˆçš„ä¸Šé™
     private Map<String,Integer> spawnLimit;
 
     private CommentedConfigurationNode configNode;
@@ -89,11 +89,11 @@ public class NoLag {
 
     @Listener
     public void onStarted(GameStartedServerEvent event) throws IOException {
-        //todo-·şÎñÆ÷¿ªÊ¼Ö®ºó£¬ÎªÇåÀíÊÂ¼ş¿ª±ÙÒ»¸öÑ­»·µÄ¶àÏß³Ì??Clear();
+        //todo-æœåŠ¡å™¨å¼€å§‹ä¹‹åï¼Œä¸ºæ¸…ç†äº‹ä»¶å¼€è¾Ÿä¸€ä¸ªå¾ªç¯çš„å¤šçº¿ç¨‹??Clear();
     }
 
     private void Clear() {
-        //todo-¸ù¾İConfigNode½øĞĞÇåÀí
+        //todo-æ ¹æ®ConfigNodeè¿›è¡Œæ¸…ç†
     }
 
     @Listener
@@ -108,19 +108,19 @@ public class NoLag {
         src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(translator.getstring("message.KSEprefix")+translator.getstring("message.reload")));
     }
 
-    //todo-ÔÚÉúÎïÉú³É/¼ÓÔØµÄÊ±ºò£¬¼ì²âËùÔÚÇø¿éµÄÊµÌåÊı£¬³¬¹ıÊıÁ¿Ö®ºó½ûÖ¹Éú³É£»ÊÇ·ñÎªºÚÃûµ¥ÄÚµÄÉúÎï£¬Èç¹ûÊÇ£¬½ûÖ¹Éú³É¡£
+    //todo-åœ¨ç”Ÿç‰©ç”Ÿæˆ/åŠ è½½çš„æ—¶å€™ï¼Œæ£€æµ‹æ‰€åœ¨åŒºå—çš„å®ä½“æ•°ï¼Œè¶…è¿‡æ•°é‡ä¹‹åç¦æ­¢ç”Ÿæˆï¼›æ˜¯å¦ä¸ºé»‘åå•å†…çš„ç”Ÿç‰©ï¼Œå¦‚æœæ˜¯ï¼Œç¦æ­¢ç”Ÿæˆã€‚
     @Listener
     public void onMobSpawn(SpawnEntityEvent event){
 
     }
 
-    //todo-ÔÚ½»»¥·½¿éµÄÊ±ºò£¬¼ì²âÊÇ·ñÇ¿ÖÆÉ¾³ıºÚÃûµ¥ÄÚµÄ·½¿é
+    //todo-åœ¨äº¤äº’æ–¹å—çš„æ—¶å€™ï¼Œæ£€æµ‹æ˜¯å¦å¼ºåˆ¶åˆ é™¤é»‘åå•å†…çš„æ–¹å—
     @Listener
     public void onInteractBlock(InteractBlockEvent event){
 
     }
 
-    //todo-ÔÚ·ÅÖÃ·½¿éµÄÊ±ºò£¬¼ì²âÊÇ·ñÇ¿ÖÆÉ¾³ıºÚÃûµ¥ÄÚµÄ·½¿é
+    //todo-åœ¨æ”¾ç½®æ–¹å—çš„æ—¶å€™ï¼Œæ£€æµ‹æ˜¯å¦å¼ºåˆ¶åˆ é™¤é»‘åå•å†…çš„æ–¹å—
     @Listener
     public void onPlaceBlock(ChangeBlockEvent$Place$Impl event){
 
@@ -148,9 +148,9 @@ public class NoLag {
             configNode.getNode(pluginName).getNode("ForceMode").setValue(true)
                     .setComment(translator.getstring("cfg.comment.forcemode"));
         }
-        //todo-¼ÓÔØ·½¿éºÚÃûµ¥
-        //todo-¼ÓÔØÉúÎïºÚÃûµ¥
-        //todo-¼ÓÔØ²»Í¬ÊÀ½çµÄÃ¿Çø¿éÉúÎïÉÏÏŞ
+        //todo-åŠ è½½æ–¹å—é»‘åå•
+        //todo-åŠ è½½ç”Ÿç‰©é»‘åå•
+        //todo-åŠ è½½ä¸åŒä¸–ç•Œçš„æ¯åŒºå—ç”Ÿç‰©ä¸Šé™
         configLoader.save (configNode);
     }
 
@@ -166,7 +166,7 @@ public class NoLag {
         return translator;
     }
 
-    //Îª¿ØÖÆÌ¨Êä³öÎÄ¼ş¼ÓÉÏÑÕÉ«
+    //ä¸ºæ§åˆ¶å°è¾“å‡ºæ–‡ä»¶åŠ ä¸Šé¢œè‰²
     public void log(String str) {
         logger.info("\033[36m" + str);
     }
