@@ -82,15 +82,15 @@ public class NoLag {
         nlCmdManager.init(this);
     }
 
-    @Listener
-    public void onStart(GameStartingServerEvent event) throws IOException {
-        translator.checkUpdate();
-    }
+//    @Listener
+//    public void onStart(GameStartingServerEvent event) throws IOException {
+//        translator.checkUpdate();
+//    }
 
-    @Listener
-    public void onStarted(GameStartedServerEvent event) throws IOException {
-        //todo-服务器开始之后，为清理事件开辟一个循环的多线程??Clear();
-    }
+//    @Listener
+//    public void onStarted(GameStartedServerEvent event) throws IOException {
+//        //todo-服务器开始之后，为清理事件开辟一个循环的多线程??Clear();
+//    }
 
     private void Clear() {
         //todo-根据ConfigNode进行清理
@@ -109,22 +109,22 @@ public class NoLag {
     }
 
     //todo-在生物生成/加载的时候，检测所在区块的实体数，超过数量之后禁止生成；是否为黑名单内的生物，如果是，禁止生成。
-    @Listener
-    public void onMobSpawn(SpawnEntityEvent event){
-
-    }
+//    @Listener
+//    public void onMobSpawn(SpawnEntityEvent event){
+//
+//    }
 
     //todo-在交互方块的时候，检测是否强制删除黑名单内的方块
-    @Listener
-    public void onInteractBlock(InteractBlockEvent event){
-
-    }
+//    @Listener
+//    public void onInteractBlock(InteractBlockEvent event){
+//
+//    }
 
     //todo-在放置方块的时候，检测是否强制删除黑名单内的方块
-    @Listener
-    public void onPlaceBlock(ChangeBlockEvent$Place$Impl event){
-
-    }
+//    @Listener
+//    public void onPlaceBlock(ChangeBlockEvent$Place$Impl event){
+//
+//    }
 
     public void cfgInit() throws IOException {
         configNode = configLoader.load();
