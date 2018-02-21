@@ -107,7 +107,7 @@ public class NoLagCommandManager {
 
     public void init(NoLag plugin) {
         CommandManager cmdManager = Sponge.getCommandManager();
-        cmdManager.register(plugin, this.get(), "KaroglanSignEditor", "KSE", "Sign", "signeditor", "Se");
+        cmdManager.register(plugin, this.get(), "nolag", "nl", "nlag", "nol");
         translator = this.plugin.getTranslator();
         translator.logInfo("reportBug");
         translator.logInfo("github");

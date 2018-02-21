@@ -131,8 +131,7 @@ public class NoLag {
         if (configNode.getNode(pluginName).getNode("Language").isVirtual()) {
             configNode.getNode(pluginName).getNode("Language").setValue(Locale.getDefault().toString());
             translator = new Translator(this);
-            configNode.getNode(pluginName).getNode("Language").setValue(Locale.getDefault().toString())
-                    .setComment(translator.getstring("cfg.comment.Language"));
+            configNode.getNode(pluginName).getNode("Language").setComment(translator.getstring("cfg.comment.Language"));
             translator.logInfo("cfg.notFound");
         } else translator = new Translator(this);
 

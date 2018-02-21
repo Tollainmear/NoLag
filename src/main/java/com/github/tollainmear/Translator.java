@@ -31,9 +31,10 @@ public class Translator {
     public Translator(NoLag plugin) throws IOException {
         logger = plugin.getLogger();
         assetManager = Sponge.getAssetManager();
-        lang = plugin.getConfigNode().getNode("Nolag").getNode("Language").getString();
+        lang = plugin.getConfigNode().getNode(plugin.getPluginName()).getNode("Language").getString();
         langPath = plugin.getConfigPath().toString() + "/lang/";
-        assetOpt = assetManager.getAsset(plugin, "lang/" + lang + ".properties");
+//        assetOpt = assetManager.getAsset(plugin,"lang/"+lang+".properties");
+       assetOpt = assetManager.getAsset(plugin,"lang/en_US.properties");
         if (!(Files.exists(Paths.get(langPath)))) {
             Files.createDirectory(Paths.get(langPath));
         }
@@ -42,7 +43,7 @@ public class Translator {
                 logger.warn("Could not found the Language file\"" + lang + "\",Nolag will using the \"en_US\" by default");
                 logger.info("You could also upload your Language resource library at here :");
                 logger.info("https://github.com/Tollainmear/Nolag/tree/master/resources/assets/Nolag/lang");
-                plugin.getConfigNode().getNode("Nolag").getNode("Language").setValue("en_US");
+                plugin.getConfigNode().getNode(plugin.getPluginName()).getNode("Language").setValue("en_US");
                 plugin.getConfigLoader().save(plugin.getConfigNode());
                 assetOpt = assetManager.getAsset(plugin, "lang/en_US.properties");
                 if (!assetOpt.isPresent()) {
