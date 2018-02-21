@@ -23,6 +23,7 @@ import org.spongepowered.api.Sponge;
 
 import java.io.Console;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class BBlackExecutor implements CommandExecutor {
     @Override
@@ -31,23 +32,44 @@ public class BBlackExecutor implements CommandExecutor {
         //todo-修改并存储配置文件、configNode
         //获取后面的参数，当没有给出方块ID到时候，默认进行射线追踪，添加第一个非空气方块到缓存黑名单
         //添加前需要confirm确认
-        if (src instanceof Player){
+
+        //Is Player?
+        if (!(src instanceof Player)) {
+            src.sendMessage(translator.getText("message.CommandSource.error"));
+            return CommandResult.empty();
+        }
+        //RayTrace--
+        else {
             Player player = (Player) src;
+            Optional<String> blockID = args.getOne(Text.of("BlockID"));
+            if (blockID.isPresent()) {
+                NoLag.getbBlackList().add(blockID.get());
+                player.sendMessage(Text.of(blockID.get()).concat(translator.getText("add-bbl-done")));
+                return CommandResult.success();
+            }
             BlockRay<World> blockRay = BlockRay.from(player)
                     .distanceLimit(6).build();
             while (blockRay.hasNext()) {
                 BlockRayHit<World> blockRayHit = blockRay.next();
                 Location<World> Location = blockRayHit.getLocation();
                 BlockType targetBlock = Location.getBlockType();
+                //capture the first block witch was not a AIR_Block
                 if (!(targetBlock.equals(BlockTypes.AIR))) {
-                    player.sendMessage(Text.of(targetBlock.getId()));
-                    break;
+                    NoLag.getTempConfirmMap().put(player.getName(), targetBlock.getId());
+                    player.sendMessage(Text.of(targetBlock.getId()).concat(translator.getText("add-bbl-temp")));
+
+                    Sponge.getScheduler().createTaskBuilder()
+                            .execute(() -> {
+                                NoLag.getTempConfirmMap().remove(player.getName());
+                            })
+                            .delay(20, TimeUnit.SECONDS)
+                            .submit(NoLag.getInstance());
+                    return CommandResult.success();
                 }
             }
+            //if no block was founded return
+            player.sendMessage(translator.getText("missingBlocks"));
+            return CommandResult.empty();
         }
-        else{
-            src.sendMessage(translator.getText("message.ConsoleSource.error"));
-        }
-        return CommandResult.success();
     }
 }

@@ -27,11 +27,15 @@ public class NoLagCommandManager {
     private CommandSpec eblack;
     //方块黑名单
     private CommandSpec bblack;
+    //列出黑名单
+    private CommandSpec list;
     //确认添加缺省的面对的方块
     private CommandSpec confirm;
 
+
     private CommandSpec reload;
     private CommandSpec version;
+    private CommandSpec help;
 
     public NoLagCommandManager(NoLag plugin) {
         this.plugin = plugin;
@@ -59,14 +63,14 @@ public class NoLagCommandManager {
 
         limit = CommandSpec.builder()
                 .permission(plugin.getPluginName() + ".limit")
-                .description(Text.of("set the limit of mobs per chunk in specific world"))
+                .description(Text.of("limit the limit of mobs per chunk in specific world"))
                 .arguments(GenericArguments.optional(GenericArguments.integer(Text.of("line"))))
                 .executor(new LimitExecutor())
                 .build();
 
         eblack = CommandSpec.builder()
                 .permission(plugin.getPluginName() + ".eblack")
-                .description(Text.of("add the block to the block-blacklist"))
+                .description(Text.of("add the entity to the block-blacklist"))
                 .arguments(GenericArguments.seq(
                         GenericArguments.integer(Text.of("line")),
                         GenericArguments.integer(Text.of("another line"))
@@ -77,32 +81,44 @@ public class NoLagCommandManager {
         bblack = CommandSpec.builder()
                 .permission(plugin.getPluginName() + ".bblack")
                 .description(Text.of("add the block to the block-blacklist"))
-                .arguments(GenericArguments.none())
+                .arguments(GenericArguments.optional(GenericArguments.string(Text.of("BlockID"))))
                 .executor(new BBlackExecutor())
+                .build();
+
+        list = CommandSpec.builder()
+                .permission(plugin.getPluginName() + ".list")
+                .description(Text.of("show the entity/block-blacklist"))
+                .arguments(GenericArguments.string(Text.of("BBL|EBL")))
+                .executor(new ListExecutor())
                 .build();
 
         confirm = CommandSpec.builder()
                 .permission(plugin.getPluginName() + ".confirm")
-                .description(Text.of("confirm the block/entity to add to the black list"))
+                .description(Text.of("confirm the block/entity to add it to the black list"))
                 .arguments(GenericArguments.none())
                 .executor(new ConfirmExecutor())
                 .build();
 
         reload = CommandSpec.builder()
                 .permission(plugin.getPluginName() + ".reload")
-                .description(Text.of("relaod the KSE."))
+                .description(Text.of("relaod the NoLag."))
                 .arguments(GenericArguments.none())
                 .executor(new ReloadExecutor())
                 .build();
 
         version = CommandSpec.builder()
                 .permission(plugin.getPluginName() + ".version")
-                .description(Text.of("Show the version of KSE"))
+                .description(Text.of("Show the version of NoLag"))
                 .arguments(GenericArguments.none())
                 .executor(new VersionExecutor())
                 .build();
 
-
+        help = CommandSpec.builder()
+                .permission(plugin.getPluginName() + ".help")
+                .description(Text.of("show helping message"))
+                .arguments(GenericArguments.none())
+                .executor(new HelpExecutor())
+                .build();
     }
 
     public void init(NoLag plugin) {
@@ -119,11 +135,13 @@ public class NoLagCommandManager {
                 .child(interval, "time","t")
                 .child(clear, "remove","c")
                 .child(unloadChunks, "unload", "uc")
-                .child(limit, "l")
+                .child(limit, "li")
+                .child(list, "ls")
                 .child(eblack, "eb")
                 .child(bblack, "bb")
                 .child(version, "version", "ver", "v")
                 .child(reload, "reload", "r")
+                .child(help,"?")
                 .executor(new MainExecutor())
                 .arguments(GenericArguments.none())
                 .build();

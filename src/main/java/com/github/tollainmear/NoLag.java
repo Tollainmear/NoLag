@@ -37,8 +37,13 @@ public class NoLag {
     private boolean isForced;
     //是否开启自动区块卸载
     private boolean isAutoUnload;
+
+    public static List<String> geteBlackList() {
+        return eBlackList;
+    }
+
     //禁止生成生物的黑名单（加载事件、生成事件、交互事件监听中删除指定生物）
-    private List<String> eBlackList;
+    private static List<String> eBlackList;
 
     public static List<String> getbBlackList() {
         return bBlackList;
