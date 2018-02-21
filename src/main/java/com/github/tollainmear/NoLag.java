@@ -60,7 +60,7 @@ public class NoLag {
         return tempConfirmMap;
     }
 
-    private static Map<String,String> tempConfirmMap;
+    private static Map<String,String> tempConfirmMap = new HashMap<>();
 
     private CommentedConfigurationNode configNode;
 
