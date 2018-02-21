@@ -34,14 +34,14 @@ public class BBlackExecutor implements CommandExecutor {
         if (src instanceof Player){
             Player player = (Player) src;
             BlockRay<World> blockRay = BlockRay.from(player)
-                    .distanceLimit(20).build();
+                    .distanceLimit(6).build();
             while (blockRay.hasNext()) {
                 BlockRayHit<World> blockRayHit = blockRay.next();
                 Location<World> Location = blockRayHit.getLocation();
                 BlockType targetBlock = Location.getBlockType();
                 if (!(targetBlock.equals(BlockTypes.AIR))) {
-                    String i = targetBlock.getId();
-                    player.sendMessage(Text.of(i));
+                    player.sendMessage(Text.of(targetBlock.getId()));
+                    break;
                 }
             }
         }
