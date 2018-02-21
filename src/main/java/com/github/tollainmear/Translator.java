@@ -33,26 +33,25 @@ public class Translator {
         assetManager = Sponge.getAssetManager();
         lang = plugin.getConfigNode().getNode(plugin.getPluginName()).getNode("Language").getString();
         langPath = plugin.getConfigPath().toString() + "/lang/";
-//        assetOpt = assetManager.getAsset(plugin,"lang/"+lang+".properties");
-       assetOpt = assetManager.getAsset(plugin,"lang/en_US.properties");
+        assetOpt = assetManager.getAsset(plugin,"lang/"+lang+".properties");
         if (!(Files.exists(Paths.get(langPath)))) {
             Files.createDirectory(Paths.get(langPath));
         }
         if (!(langFile = new File(langPath + lang + ".properties")).exists()) {
             if (!assetOpt.isPresent()) {
-                logger.warn("Could not found the Language file\"" + lang + "\",Nolag will using the \"en_US\" by default");
+                logger.warn("Could not found the Language file\"" + lang + "\",Nolag will using the \"zh_CN\" by default");
                 logger.info("You could also upload your Language resource library at here :");
-                logger.info("https://github.com/Tollainmear/Nolag/tree/master/resources/assets/Nolag/lang");
-                plugin.getConfigNode().getNode(plugin.getPluginName()).getNode("Language").setValue("en_US");
+                logger.info("https://github.com/Tollainmear/Nolag/tree/master/resources/assets/nolag/lang");
+                plugin.getConfigNode().getNode(plugin.getPluginName()).getNode("Language").setValue("zh_CN");
                 plugin.getConfigLoader().save(plugin.getConfigNode());
-                assetOpt = assetManager.getAsset(plugin, "lang/en_US.properties");
+                assetOpt = assetManager.getAsset(plugin, "lang/zh_CN.properties");
                 if (!assetOpt.isPresent()) {
-                    logger.warn("Ops....Could not load en_US else,please submit issues at:");
+                    logger.warn("Ops....Could not load zh_CN else,please submit issues at:");
                     logger.warn("https://github.com/Tollainmear/Nolag/issues");
                     return;
                 }
-                langFile = new File(langPath + "en_US.properties");
-                if (!(Files.exists(Paths.get(langPath + "en_US.properties")))){
+                langFile = new File(langPath + "zh_CN.properties");
+                if (!(Files.exists(Paths.get(langPath + "zh_CN.properties")))){
                     assetOpt.get().copyToFile(langFile.toPath());
                     logger.info("Release Language file successfully.");
                 }

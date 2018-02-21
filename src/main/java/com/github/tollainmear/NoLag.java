@@ -43,14 +43,14 @@ public class NoLag {
     }
 
     //禁止生成生物的黑名单（加载事件、生成事件、交互事件监听中删除指定生物）
-    private static List<String> eBlackList;
+    private static List<String> eBlackList = new ArrayList<>();
 
     public static List<String> getbBlackList() {
         return bBlackList;
     }
 
     //强制清理的（方块）黑名单（同时禁止放置）
-    private static List<String> bBlackList;
+    private static List<String> bBlackList = new ArrayList<>();
     //自动清理的周期
     private int interval;
     //针对于每个世界单区块怪物生成的上限

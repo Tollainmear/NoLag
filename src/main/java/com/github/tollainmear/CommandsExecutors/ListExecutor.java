@@ -52,7 +52,7 @@ public class ListExecutor implements CommandExecutor {
                 return CommandResult.success();
             }
         }
-            src.sendMessage(translator.getText("List.CouldntPharseArgs"));
+            src.sendMessage(translator.getText("listCouldntPharseArgs"));
             return CommandResult.empty();
         }
     }
