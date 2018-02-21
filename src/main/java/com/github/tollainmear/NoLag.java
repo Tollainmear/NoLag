@@ -71,10 +71,6 @@ public class NoLag {
     @Inject
     private Logger logger;
 
-    public NoLag() {
-        tempConfirmMap = new Set<>;
-    }
-
     public void setNlCmdManager(NoLagCommandManager nlCmdManager) {
         this.nlCmdManager = nlCmdManager;
     }
