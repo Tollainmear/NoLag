@@ -115,7 +115,7 @@ public class NoLagCommandManager {
 
     public CommandCallable get() {
         return CommandSpec.builder()
-                .description(Text.of("KSE's main command."))
+                .description(Text.of("NoLag's main command."))
                 .child(interval, "time","t")
                 .child(clear, "remove","c")
                 .child(unloadChunks, "unload", "uc")

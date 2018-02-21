@@ -19,10 +19,9 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Plugin(id = "nolag",name = "NoLag",version = "1.0",authors = "Tollainmear")
 public class NoLag {
@@ -39,7 +38,7 @@ public class NoLag {
     //是否开启自动区块卸载
     private boolean isAutoUnload;
     //禁止生成生物的黑名单（加载事件、生成事件、交互事件监听中删除指定生物）
-    private List<Entity> eBlackList;
+    private List<String> eBlackList;
 
     public static List<String> getbBlackList() {
         return bBlackList;
@@ -70,10 +69,6 @@ public class NoLag {
 
     @Inject
     private Logger logger;
-
-    public NoLag() {
-        tempConfirmMap = new Set<>;
-    }
 
     public void setNlCmdManager(NoLagCommandManager nlCmdManager) {
         this.nlCmdManager = nlCmdManager;
@@ -140,6 +135,8 @@ public class NoLag {
             translator.logInfo("cfg.notFound");
         } else translator = new Translator(this);
 
+        bBlackList = configNode.getNode(pluginName).getNode("B-BlackList").getChildrenList().stream().map(CommentedConfigurationNode::getString).collect(Collectors.toList());
+        eBlackList = configNode.getNode(pluginName).getNode("e-BlackList").getChildrenList().stream().map(CommentedConfigurationNode::getString).collect(Collectors.toList());
 
         if (configNode.getNode(pluginName).getNode("AutoUnload").isVirtual()) {
             configNode.getNode(pluginName).getNode("AutoUnload").setValue(true);
