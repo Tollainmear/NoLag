@@ -11,28 +11,18 @@ import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.data.manipulator.mutable.item.BlockItemData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.event.block.InteractBlockEvent;
-import org.spongepowered.api.event.entity.InteractEntityEvent;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GamePostInitializationEvent;
-import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
-import org.spongepowered.api.event.game.state.GameStartedServerEvent;
-import org.spongepowered.api.event.game.state.GameStartingServerEvent;
-import org.spongepowered.api.event.gen.ChangeBlockEvent$Place$Impl;
-import org.spongepowered.api.event.gen.SpawnEntityEvent$ChunkLoad$Impl;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.serializer.TextSerializers;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.World;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 @Plugin(id = "nolag",name = "NoLag",version = "1.0",authors = "Tollainmear")
 public class NoLag {
@@ -50,12 +40,23 @@ public class NoLag {
     private boolean isAutoUnload;
     //禁止生成生物的黑名单（加载事件、生成事件、交互事件监听中删除指定生物）
     private List<Entity> eBlackList;
+
+    public static List<String> getbBlackList() {
+        return bBlackList;
+    }
+
     //强制清理的（方块）黑名单（同时禁止放置）
-    private List<BlockItemData> bBlackList;
+    private static List<String> bBlackList;
     //自动清理的周期
     private int interval;
     //针对于每个世界单区块怪物生成的上限
     private Map<String,Integer> spawnLimit;
+
+    public static Map<String, String> getTempConfirmMap() {
+        return tempConfirmMap;
+    }
+
+    private static Map<String,String> tempConfirmMap;
 
     private CommentedConfigurationNode configNode;
 
@@ -69,6 +70,10 @@ public class NoLag {
 
     @Inject
     private Logger logger;
+
+    public NoLag() {
+        tempConfirmMap = new Set<>;
+    }
 
     public void setNlCmdManager(NoLagCommandManager nlCmdManager) {
         this.nlCmdManager = nlCmdManager;
@@ -115,10 +120,10 @@ public class NoLag {
 //    }
 
     //todo-在交互方块的时候，检测是否强制删除黑名单内的方块
-//    @Listener
-//    public void onInteractBlock(InteractBlockEvent event){
-//
-//    }
+ //   @Listener
+  //   public void onInteractBlock(InteractBlockEvent event){
+ //           if ()
+ //   }
 
     //todo-在放置方块的时候，检测是否强制删除黑名单内的方块
 //    @Listener
