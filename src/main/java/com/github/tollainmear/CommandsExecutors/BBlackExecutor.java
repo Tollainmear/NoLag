@@ -48,7 +48,7 @@ public class BBlackExecutor implements CommandExecutor {
                 return CommandResult.success();
             }
             BlockRay<World> blockRay = BlockRay.from(player)
-                    .distanceLimit(6).build();
+                    .distanceLimit(5).build();
             while (blockRay.hasNext()) {
                 BlockRayHit<World> blockRayHit = blockRay.next();
                 Location<World> Location = blockRayHit.getLocation();

@@ -10,6 +10,7 @@ public class ClearExecutor implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         //todo-清理指定世界的指定生物类型
+
         return null;
     }
 }
